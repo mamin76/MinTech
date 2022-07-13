@@ -1,0 +1,98 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import "~@angular/material/theming";
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$eden-tech-primary: mat-palette($mat-indigo);
+$eden-tech-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$eden-tech-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$eden-tech-theme: mat-light-theme($eden-tech-primary,
+  $eden-tech-accent,
+  $eden-tech-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($eden-tech-theme);
+
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+
+// @import "./assets/styles/variables.scss";
+// @import "./assets/styles/global.scss";
+@font-face {
+  font-family: "Poppins";
+  src: url("/assets/fonts/Poppins.eot");
+  /* IE9 Compat Modes */
+  src: url("/assets/fonts/Poppins.eot?#iefix") format("embedded-opentype"),
+    // /* IE6-IE8 */ url("/assets/fonts/Poppins.woff") format("woff"),
+    /* Modern Browsers */
+    url("/assets/fonts/Poppins-Regular.ttf") format("truetype"),
+    /* Modern Browsers */
+    url("/assets/fonts/Poppins-Bold.ttf") format("truetype"),
+    /* Safari, Android, iOS */
+    url("/assets/fonts/Poppins.svg#svgFontName") format("svg");
+  /* Legacy iOS */
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Poppins, "Helvetica Neue", sans-serif;
+}
+
+.mat-header-row {
+  background-color: #481a90;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.mat-header-cell {
+  color: white;
+}
+
+.custom-mat-show-image-dialog-container .mat-dialog-container {
+  /* add your styles */
+  padding: 0px !important;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.mat-spinner {
+  position: absolute;
+  top: 50%;
+  left: 44%;
+}
+
+.mat-error {
+  position: relative;
+  top: -12px;
+  left: 10px;
+}
+
+.href {
+  /*optional*/
+  font-family: arial, sans-serif;
+  /*input has OS specific font-family*/
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@import "~ng-pick-datetime/assets/style/picker.min.css";
