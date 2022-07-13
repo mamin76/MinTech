@@ -1,0 +1,87 @@
+<section class="">
+    <section class="row">
+        <div class="col-12 row g-0 mb-3 align-items-center">
+            <span class="col-1">
+                <img class="pointer back-btn" src="../../assets/Icons/arrow-left-2.svg" (click)="goBack()" />
+            </span>
+            <span class="col-11">
+                <div class="create-essential-user__title"> Create user & Assign essential role </div>
+            </span>
+        </div>
+        <div class="col-12">
+            <!-- <ol class="breadcrumb">
+                <li class="breadcrumb-item" *ngFor="let item of breadcrumbList; let i = index"
+                    [class.active]="i===breadcrumbList.length-1">
+                    <a [routerLink]="item.path" *ngIf="i!==breadcrumbList.length-1">
+                        {{ item.name }}
+                    </a>
+                    <span *ngIf="i===breadcrumbList.length-1">{{ item.name }}</span>
+                </li>
+            </ol> -->
+        </div>
+    </section>
+
+
+    <form class="example-form" [formGroup]="userForm" (ngSubmit)="createNewUser()">
+        <section class="row g-0 mb-5">
+            <div class="col-6">
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Fullname</mat-label>
+                    <input matInput formControlName="fullName" id="full-name" placeholder="enter full name here"
+                        required>
+                    <mat-error *ngIf="userForm.controls.fullName.errors">
+                        Name is Required
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Phone</mat-label>
+                    <input matInput formControlName="userPhone" id="phone" placeholder="+2 0111-313-6831" name="phone"
+                        required> -->
+                <!-- enter phone number here -->
+                <!-- <mat-error *ngIf="userForm.controls.userPhone.invalid">{{getPhoneErrorMessage()}}</mat-error> -->
+                <!-- </mat-form-field> -->
+
+                <ngx-intl-tel-input class="full-width mat-form-field-wrapper" [cssClass]="'custom'"
+                    [preferredCountries]="preferredCountries" [enableAutoCountrySelect]="true"
+                    [enablePlaceholder]="true" [searchCountryFlag]="true"
+                    [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                    [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.SaudiArabia" [maxLength]="15"
+                    [phoneValidation]="true" [separateDialCode]="separateDialCode"
+                    [numberFormat]="PhoneNumberFormat.National" name="phone" formControlName="userPhone">
+                </ngx-intl-tel-input>
+
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Role</mat-label>
+                    <mat-select formControlName="userRole" id="role" aria-required="true">
+                        <!-- <mat-option value=""> select role </mat-option> -->
+                        <!-- <mat-option value="Ground Enforcer 22h22"> Ground Enforcer 22h22 </mat-option> -->
+                        <mat-option *ngFor="let role of roles" [value]="role.name">{{role.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </div>
+            <div class="col-6 px-2">
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="pat@example.com" id="email" formControlName="userEmail" required>
+                    <mat-error *ngIf="userForm.controls.userEmail.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Operation</mat-label>
+                    <mat-select formControlName="userOperation" id="role" aria-required="true">
+                        <!-- <mat-option value=""> select operation </mat-option> -->
+                        <mat-option *ngFor="let operation of operations" [value]="operation.name">{{operation.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </section>
+        <section class="row g-0 justify-content-end">
+            <div class="col-6 px-2 text-end">
+                <button class="btn login__btn full-width" type="submit" [disabled]="!userForm.valid">Save User</button>
+            </div>
+        </section>
+    </form>
+</section>

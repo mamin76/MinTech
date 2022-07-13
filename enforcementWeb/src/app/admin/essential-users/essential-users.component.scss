@@ -1,0 +1,71 @@
+@import "../../../assets/styles/global";
+
+.essential-users {
+  font-family: Poppins;
+  font-style: normal;
+
+  &__title {
+    color: #14171a;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 48px;
+  }
+
+  &__creation-btn {
+    // width: 222px;
+    // height: 48px;
+    color: #003f40;
+    text-align: center;
+    padding: 0.75rem;
+    background: #00d8db;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+    border: 0;
+    border-radius: 8px;
+  }
+  // &__search-bar .mat-form-field-flex {
+  //   // padding-bottom: 0;
+  //   background: #f9f7ff !important;
+  //   border-radius: 4px !important;
+  // }
+}
+.expand-body {
+  min-height: 1rem;
+}
+
+.detail-row {
+  background: #f9f7ff;
+}
+.element-row:not(.expanded-row):hover {
+  background: #eeebff;
+}
+
+.element-row:not(.expanded-row):active {
+  background: #d4c8fa;
+}
+.expanded-row {
+  background: #d4c8fa !important;
+}
+.element-row {
+  border-bottom-width: 0 !important;
+  background: #f9f7ff;
+}
+tr.mat-row {
+  height: 0;
+}
+
+.grid-layout-custom {
+  width: 70vw;
+}
+
+.custom-table-card {
+  max-width: 100%;
+  overflow: auto;
+}
+
+.mat-form-field-flex {
+  padding: 0.2rem 1rem !important;
+  background-color: #f9f7ff !important;
+  border-radius: 4px 4px 0 0 !important;
+}

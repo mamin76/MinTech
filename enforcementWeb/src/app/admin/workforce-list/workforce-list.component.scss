@@ -1,0 +1,70 @@
+@import "../../../assets/styles/variables";
+@import "../../../assets/styles/global";
+
+.workforce {
+  font-family: Poppins;
+  font-style: normal;
+
+  &__title {
+    color: #14171a;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 48px;
+  }
+
+  &__img {
+    width: 5rem;
+    height: 5rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+    border: 1px solid #00d8db;
+    box-sizing: border-box;
+  }
+}
+
+.expand-body {
+  min-height: 1rem;
+}
+
+.detail-row {
+  background: #f9f7ff;
+}
+.element-row:not(.expanded-row):hover {
+  background: #eeebff;
+}
+
+.element-row:not(.expanded-row):active {
+  background: #d4c8fa;
+}
+.expanded-row {
+  background: #d4c8fa !important;
+}
+.element-row {
+  border-bottom-width: 0 !important;
+  background: #f9f7ff;
+}
+tr.mat-row {
+  height: 0;
+}
+
+.grid-layout-custom {
+  width: 70vw;
+}
+
+.custom-table-card {
+  max-width: 100%;
+  overflow: auto;
+}
+
+.mat-form-field-flex {
+  padding: 0.2rem 1rem !important;
+  background-color: #f9f7ff !important;
+  border-radius: 4px 4px 0 0 !important;
+}
+
+.mat-spinner {
+  position: absolute;
+  top: 50%;
+  left: 44%;
+}

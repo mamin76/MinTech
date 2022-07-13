@@ -1,0 +1,13 @@
+@import "../../../assets/styles/global.scss";
+
+.create-essential-user {
+  font-family: Poppins;
+  font-style: normal;
+
+  &__title {
+    color: #14171a;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 48px;
+  }
+}

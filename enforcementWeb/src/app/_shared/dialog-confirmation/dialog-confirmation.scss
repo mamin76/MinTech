@@ -1,0 +1,43 @@
+.text-center .btn {
+    margin: 0px 12px;
+    width: 40%;
+}
+.title {
+    margin: 0 0;
+}
+
+h2 {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+.title span{
+    color: white;
+}
+
+.content {
+    padding: 10px 42px;
+}
+.close {
+    cursor: pointer;
+}
+
+.footer {
+    padding: 15px;
+}
+
+.btn-confirm {
+    font-weight: 600;
+    font-size: 20px;
+    border-radius: 8px;
+    background: #00d8db;
+    color: white;
+}
+.btn-cancel {
+    font-weight: 600;
+    font-size: 20px;
+    border-radius: 8px;
+    background: white;
+    color: black;
+    border:1px solid black
+}

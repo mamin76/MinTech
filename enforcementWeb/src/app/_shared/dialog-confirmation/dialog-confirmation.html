@@ -1,0 +1,29 @@
+<div class="title" [ngStyle]="{'background-color':data.title.color }">
+    <h2>
+        <span>{{data.title.title}}</span>
+        <span class="close" (click)="close()"><strong>x</strong></span>
+    </h2>
+</div>
+
+<div class="content">
+    <div>{{data.body}}</div>
+    <div style="padding-top: 25px;" *ngIf="data.comment">
+        <form [formGroup]="form">
+            <mat-form-field style="width: 380px;" appearance="fill">
+                <textarea matInput formControlName="comment" placeholder="enter void reason  here"
+                    style="width: 380px;height: 150px;"></textarea>
+
+            </mat-form-field>
+            <mat-error *ngIf="myError('comment', 'required')">Comment is required</mat-error>
+
+        </form>
+
+    </div>
+
+</div>
+<div class="text-center footer">
+    <button *ngIf="!data.btnClose.hide" class="btn btn-cancel" (click)="close()">{{data.btnClose.title}}</button>
+    <button *ngIf="!data.btnConfirmation.hide" class="btn btn-confirm"
+        [ngStyle]="{'background-color':data.btnConfirmation.color }"
+        (click)="onConfirm()">{{data.btnConfirmation.title}}</button>
+</div>
