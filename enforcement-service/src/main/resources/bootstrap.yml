@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: ${APPLICATION_NAME}
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+  lifecycle:
+    timeout-per-shutdown-phase: 20
+
+server:
+  servlet:
+    contextPath: /enforcements
+  shutdown: graceful
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URL}
+  instance:
+    prefer-ip-address: true
+
+
+jwt:
+  header: Authorization
+  secret: "${JWT_SECRET:my-very-secret-key}"
+
+metric:
+  api:
+    username: ${USERNAME}
+    password: ${PASSWORD}
+    ClientGUID: ${ClientGUID}
+    SiteCode: ${SiteCode}
+
+enforcement:
+  team:
+    mail: enforcement@scsc.sa
+thaki:
+  check:
+    token: 96e3076ac6c54948e6c11ae91109b5878da8720758375ac42fc9832e2d36708c3069dd69a9ebfe5045ef7585ab7fb82b8a01fae7cc53d601f87362a4dc7594f2
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  security:
+    enabled: false
