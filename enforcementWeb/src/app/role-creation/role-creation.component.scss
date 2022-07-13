@@ -1,0 +1,79 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/global";
+
+.role {
+  font-family: Poppins;
+  font-style: normal;
+
+  &__title {
+    color: #14171a;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 48px;
+  }
+
+  &__sub-title {
+    color: #14171a;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  &__error {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 16px;
+    color: #d93636;
+  }
+
+  &__entities {
+    background: #f9f7ff;
+    border-radius: 4px 0px 0px 4px;
+  }
+
+  &__actions-holder {
+    max-height: 21rem;
+    overflow-y: auto;
+  }
+}
+
+table {
+  width: 100%;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+tr.mat-footer-row {
+  font-weight: bold;
+}
+
+.mat-elevation-z8 {
+  box-shadow: none;
+}
+
+.login {
+  &__btn {
+    padding: 0.75rem 4rem;
+    margin: 2rem 0 0.75rem 0;
+  }
+}
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent
+  .mat-ripple-element {
+  border-radius: 4px;
+  background: #481a90 !important;
+}
+
+// ,
+// .mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent
+//   .mat-ripple-element
+// .mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent
+//   .mat-ripple-element {
+// }
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  border-radius: 8px;
+  border: 2px solid #481a90;
+  box-sizing: border-box;
+}

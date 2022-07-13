@@ -1,0 +1,189 @@
+<section class="row g-0 align-items-center">
+    <div class="col-12 row g-0 mb-5">
+        <div class="title-page">
+            <div>
+                <h1><strong>Dashboard</strong></h1>
+            </div>
+            <div>
+                <mat-form-field>
+                    <!-- <mat-label>selectedOperationId</mat-label> -->
+                    <mat-select (selectionChange)="onSelectionChange($event)" [(value)]="selectedOperationId">
+                        <mat-option *ngFor="let operation of operations" [value]="operation.id">
+                            {{operation.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <!-- <mat-label>selectedYear</mat-label> -->
+                    <mat-select (selectionChange)="onSelectionChange($event)" [(value)]="selectedYear">
+                        <mat-option *ngFor="let year of years" [value]="year.value">
+                            {{year.title}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <!-- <mat-label>selectedMonth</mat-label> -->
+                    <mat-select (selectionChange)="onSelectionChange($event)" [(value)]="selectedMonth">
+                        <mat-option *ngFor="let month of months" [value]="month.value">
+                            {{month.title}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+
+    </div>
+
+    <div>
+        <p><strong>Monthly Statistics</strong></p>
+        <div class="row">
+            <div class="col-sm-6 col-xs-12">
+                <mat-card class="total-citation-card text-center">
+                    <mat-card-content>
+                        <p class="card-title">{{sectionOne.sumOfCitations}} SAR</p>
+                        <p>Total Citations</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <!--Total Citations-->
+            <div class="col-sm-6 col-xs-12">
+                <mat-card class="total-settlemets-card text-center">
+                    <mat-card-content>
+                        <p class="card-title">{{sectionOne.sumOfPaidCitations}} SAR</p>
+                        <p>Total Settlements</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <!--Total Settlements-->
+
+        </div>
+        <!--end dashboard_Sec_One-->
+
+    </div>
+
+    <div>
+        <p><strong> Today’s Statistics </strong></p>
+
+        <div class="row">
+            <div class="col-sm-6 col-xs-12">
+                <mat-card class="total-citation-card text-center">
+                    <mat-card-content>
+                        <p class="card-title">{{sectionTwo.sumOfCitations}} SAR</p>
+                        <p>Total Citations</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <!--Total Citations-->
+            <div class="col-sm-6 col-xs-12">
+                <mat-card class="total-settlemets-card text-center">
+                    <mat-card-content>
+                        <p class="card-title">{{sectionTwo.sumOfPaidCitations}} SAR</p>
+                        <p>Total Settlements</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <!--Total Settlements-->
+
+
+        </div>
+        <!--end part one-->
+
+        <div class="row">
+            <!--part two-->
+            <div class="col-sm-3 col-xs-12">
+                <mat-card class="active-shifts-card text-center">
+                    <mat-card-content>
+                        <p class="card-title">{{sectionTwo.activeShifts}}</p>
+                        <p>Active Shifts</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <!--Total Citations-->
+            <div class="col-sm-3 col-xs-12">
+                <mat-card class="assigned-workforces-card text-center">
+                    <mat-card-content>
+                        <p class="card-title">{{sectionTwo.assignedWorkforces}}</p>
+                        <p>Assigned Workforces</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <!--Total Settlements-->
+
+
+        </div><!-- end part two-->
+
+        <!--end dashboard_Sec_Two-->
+
+
+    </div>
+
+    <div>
+        <p class="chart-title">
+            <strong>Citations Revnue</strong>
+        </p>
+
+        <div class="chart-wrapper">
+            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+            </canvas>
+        </div>
+    </div>
+
+    <div>
+        <p class="chart-title">
+            <strong>Monthly Comparison</strong>
+        </p>
+
+        <div class="chart-wrapper">
+            <div class="row">
+                <div class="col-md-3 col-sm-12 ">
+                    <mat-card class="chart-pie-right text-center">
+                        <mat-card-content>
+                            <div class="chart-pie-right-bg" style="background-color: #7FE4A1;">&nbsp;</div>
+                            <div class="chart-pie-right-middle">
+                                <p>Paid</p>
+                                <p>{{getCitationPieRightPercentage(0)}}</p>
+                            </div>
+                            <div class="chart-pie-right-buttom">
+                                {{getCitationPieRight(0)}} Citation
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                    <mat-card class="chart-pie-right text-center">
+                        <mat-card-content>
+                            <div class="chart-pie-right-bg" style="background-color: #FFA78B;">&nbsp;</div>
+                            <div class="chart-pie-right-middle">
+                                <p>Voided</p>
+                                <p>{{getCitationPieRightPercentage(1)}}</p>
+                            </div>
+                            <div class="chart-pie-right-buttom">
+                                {{getCitationPieRight(1)}} Citation
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                    <mat-card class="chart-pie-right text-center">
+                        <mat-card-content>
+                            <div class="chart-pie-right-bg" style="background-color: #FFE48F;">&nbsp;</div>
+                            <div class="chart-pie-right-middle">
+                                <p>Unpaid</p>
+                                <p>{{getCitationPieRightPercentage(2)}}</p>
+                            </div>
+                            <div class="chart-pie-right-buttom">
+                                {{getCitationPieRight(2)}} Citation
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div class="col-md-9 col-sm-12 ">
+                    <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+                        [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend"
+                        [colors]="pieChartColors">
+                    </canvas>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <mat-spinner *ngIf="loading"></mat-spinner>
+</section>

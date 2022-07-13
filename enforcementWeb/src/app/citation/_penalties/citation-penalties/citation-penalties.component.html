@@ -1,0 +1,56 @@
+<div class="row header" *ngIf="isHeader">
+    <div class="col-4">Citation Number</div>
+    <div class="col-4">Car Plate</div>
+    <div class="col-4">Violation Name</div>
+
+    <div class="col-4">#{{data.id}}</div>
+    <div class="col-4">{{data.plateNumberEn}}</div>
+    <div class="col-4">{{data.violationName}}</div>
+</div>
+
+<br />
+<div class="row">
+    <div class="col-3">Action Name</div>
+    <div class="col-3">Status</div>
+    <div class="col-3">Value</div>
+    <div [hidden]="penActionType=='voided'" class="col-3">Count</div>
+
+</div>
+
+<form [formGroup]="saveForm">
+    <div *ngFor="let penalty of data.citationPenalties; let i = index">
+        <div formArrayName="penaltiesRequestList">
+            <div [formGroupName]="i" class="row">
+                <div class="col-3">{{penalty.operationViolationPenalty.penalty.enName}}</div>
+                <div class="col-3">
+                    <mat-radio-group formControlName="penActionType">
+                        <mat-radio-button [hidden]="penActionType=='voided'" class="mat-radio-label-custom"
+                            value="Settled">Settle</mat-radio-button>
+                        <mat-radio-button [hidden]="penActionType=='settled'" value="Voided">Void</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div class="col-3">{{penalty.operationViolationPenalty.penalty.fees}} SAR</div>
+                <div class="col-3"
+                    *ngIf="penalty.operationViolationPenalty.penalty.type =='COUNTED' && getPenActionControlValue(i)=='Settled'">
+                    <mat-form-field appearance="fill">
+                        <input matInput type="number" placeholder="" formControlName="count" min="1">
+                        <mat-error *ngIf="count.invalid">Min size: 1</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row">
+
+                    <mat-form-field *ngIf="isComment && getPenActionControlValue(i)=='Voided'" style="width: 100%;" appearance="fill">
+                        <textarea matInput formControlName="comment" placeholder="enter void reason  here"
+                            style="width: 100%;;height: 150px;"></textarea>
+
+                    </mat-form-field>
+                    <mat-error *ngIf="myError('comment', 'required')">Comment is required</mat-error>
+
+                </div>
+                <mat-divider></mat-divider>
+            </div>
+        </div>
+
+    </div>
+</form>
+<mat-spinner *ngIf="loading"></mat-spinner>

@@ -1,0 +1,55 @@
+@import "../../../assets/styles/variables.scss";
+@import "../../../assets/styles/global.scss";
+
+.ellipse-1 {
+  top: 0;
+  right: 0;
+}
+.ellipse-2 {
+  bottom: 0;
+  left: 0;
+}
+.login {
+  //   font-family: Poppins;
+  //   font-style: normal;
+  //   font-weight: 600;
+  //   font-size: 32px;
+  //   line-height: 48px;
+
+  &__reset-password {
+    color: $babyBlue;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px;
+  }
+
+  //   &__content-container {
+  // text-align: center;
+  // justify-content: center;
+  //   }
+
+  //   &__shapes {
+  //     position: absolute;
+  //   }
+
+  //   &__logo {
+  //     width: 15rem;
+  //     margin-bottom: 4.5rem;
+  //   }
+
+  //   &__welcome {
+  //     color: $subTitleColor;
+  //     font-size: 20px;
+  //     line-height: 20px;
+  //   }
+
+  //   &__title {
+  //     color: $titleColor;
+  //     margin-bottom: 2rem;
+  //   }
+
+  //   &__btn {
+  //     border-radius: 8px;
+  //     background: #00d8db;
+  //   }
+}

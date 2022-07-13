@@ -1,0 +1,94 @@
+<div mat-dialog-content class="dialog-content">
+    <div id="printcontent" class="print-content">
+        <div class="text-center header">
+            <div class="header-right">
+                <div><strong>Invoice</strong></div>
+                <div>Vat Invoice</div>
+                <div>Address: </div>
+                <div>Date: {{data.invoiceDate}}</div>
+                <div>Cashier: </div>
+                <div>VAT No. </div>
+            </div>
+            <div>
+                <img src="/assets/images/image1logo.png" alt="Logo" class="img-print">
+                <div><strong>Inv No: {{data.invoiceNumber}}</strong></div>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr class="tr-border">
+                    <th class="">Item</th>
+                    <th class="">Quantity</th>
+                    <th class="">Price</th>
+                    <th class="">Total Price</th>
+                </tr>
+            </thead>
+            <tbody class="tr-border">
+                <!-- <tr ng-repeat="item in items">
+                    <td class=""></td>
+                    <td class=""></td>
+                    <td class=""></td>
+                    <th class=""></th>
+                </tr> -->
+
+                <tr class="tr-border" *ngFor="let item of data.items; let i = index">
+                    <td class="">{{item.itemName}}</td>
+                    <td class="">{{item.quantity}}</td>
+                    <td class="">{{item.amount}}</td>
+                    <th class="">{{item.totalAmount}}</th>
+                </tr>
+
+                <tr class="tr-border">
+                    <td class="">Sub Total</td>
+                    <td class=""></td>
+                    <td class=""></td>
+                    <th class="">{{data.totalAmount}}</th>
+                </tr>
+                <tr class="tr-border">
+                    <td class="">Discount</td>
+                    <td class=""></td>
+                    <td class=""></td>
+                    <th class=""></th>
+                </tr>
+                <tr class="tr-border">
+                    <td class="">VAT {{data.vat * 100}}%</td>
+                    <td class=""></td>
+                    <td class=""></td>
+                    <th class="">{{data.totalVATAmount}}</th>
+                </tr>
+                <tr class="tr-border">
+                    <td class="">Total</td>
+                    <td class=""></td>
+                    <td class=""></td>
+                    <th class="">{{data.totalAmountWithVAT}}</th>
+                </tr>
+                <tr class="tr-border">
+                    <td class="">Payment Method</td>
+                    <td class=""></td>
+                    <td class=""></td>
+                    <th class="">{{data.paymentMethodId}}</th>
+                </tr>
+                <!-- <tr class="tr-border">
+                        <td class="quantity sub-total">#</td>
+                        <td class="description sub-total">service 12%</td>
+                        <td class="price sub-total"> L.E</td>
+                        <th class=""></th>
+                    </tr> -->
+
+            </tbody>
+        </table>
+        <br>
+        <div style="text-align: center;">
+            <ngx-qrcode [elementType]="elementType" [errorCorrectionLevel]="correctionLevel" [value]="value"
+                alt="Demo QR Code" cssClass="bshadow"></ngx-qrcode>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="text-center footer">
+    <button class="btn btn-cancel" (click)="close()">Back to Citations</button>
+    <button class="btn btn-confirm" (click)="onConfirm()">Print</button>
+</div>

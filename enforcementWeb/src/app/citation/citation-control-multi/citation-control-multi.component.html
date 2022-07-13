@@ -1,0 +1,34 @@
+<div *ngIf="data.length">
+    <h2><strong>
+            {{data[0].plateNumberEn}}
+        </strong>
+    </h2>
+</div>
+
+<mat-accordion *ngIf="data.length">
+    <mat-expansion-panel *ngFor="let item of data; let idx = index" class="accordion-panel" >
+        <mat-expansion-panel-header>
+            <div class="row header">
+                <div class="col-6">Citation Number</div>
+                <div class="col-6">Violation Name</div>
+
+                <div class="col-6">#{{item.id}}</div>
+                <div class="col-6">{{item.violationName}}</div>
+            </div>
+        </mat-expansion-panel-header>
+
+        <app-citation-penalties [data]="item" [penActionType]="'control'" [isHeader]="false" [isComment]="true"
+            (penalties)="getPenalities($event,idx)" (total)="getTotal($event,idx)">
+        </app-citation-penalties>
+
+    </mat-expansion-panel>
+
+</mat-accordion>
+
+<app-citation-penalties-total [total]="total">
+</app-citation-penalties-total>
+
+<div class="text-center">
+    <button class="btn" style="background: #ACB5BE;" (click)="onCancel()"> Cancel </button>
+    <button class="btn login__btn" (click)="onApply()"> Apply </button>
+</div>

@@ -1,0 +1,76 @@
+.total-citation-card{
+    background-color: #D7F4F5;
+}
+.total-settlemets-card{
+    background-color: #D4C8FA;
+}
+
+.assigned-workforces-card{
+    background-color: #EEEBFF;
+}
+.active-shifts-card{
+    background-color: #EEEBFF;
+}
+.row{
+    padding: 20px 0px;
+}
+
+.mat-card-content{
+    font-weight: 500;
+    font-size: 18px;
+    margin: 30px 0 !important;
+}
+.mat-card-content .card-title{
+    font-size: 25px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.row .text-center{
+    height: 145px;
+}
+.title-page{
+    display: flex;
+    justify-content: space-between;
+}
+
+.mat-form-field-type-mat-select{
+    padding: 0 10px;
+    width: 143px;
+}
+
+.chart-title {
+    padding: 25px 0;
+}
+.chart-wrapper{
+    background-color: #F8F9FA;
+    padding: 25px 0;
+}
+
+.chart-pie-right{
+    margin: 25px;
+    background-color:#FFFFFF;
+}
+
+.chart-pie-right-bg{    
+    width: 48px;
+    height: 16px;
+    border-radius: 99px;
+    position: relative;
+    top: -28px;
+    left: 10px;
+}
+
+.chart-pie-right-middle{
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 12px;
+}
+.chart-pie-right-buttom{
+    font-weight: 600;
+    padding: 12px 0px;
+}
+.mat-spinner {
+    position: absolute;
+    top: 50%;
+    left: 44%;
+  }

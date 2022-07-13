@@ -1,0 +1,19 @@
+.reset {
+  font-family: Poppins;
+  font-style: normal;
+
+  &__title {
+    color: #481a90;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 48px;
+  }
+
+  &__message {
+    color: #6b757e;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 30px;
+    margin-bottom: 48px;
+  }
+}

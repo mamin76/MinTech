@@ -1,0 +1,48 @@
+@import "../../assets/styles/variables";
+
+.create-workforce {
+  font-family: Poppins;
+  font-style: normal;
+
+  &__title {
+    color: #14171a;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 48px;
+  }
+}
+.file-input {
+  display: none;
+}
+.file-upload {
+  height: 11.5rem;
+  font-family: Poppins;
+  font-style: normal;
+  text-align: center;
+  align-items: center;
+  border: 2px dashed #00d8db;
+  border-radius: 4px;
+
+  &__title {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+    color: #14171a;
+  }
+
+  &__title-optional {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+    color: #e5e5e5;
+    color: #cdd4db;
+  }
+
+  &__txt {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 18px;
+    color: $babyBlue;
+    color: #00d8db;
+  }
+}

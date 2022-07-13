@@ -1,0 +1,125 @@
+<section class="row g-0 align-items-center">
+    <div class="col-12 row g-0 mb-5">
+        <div class="col-9">
+            <h1><strong>Manage Roles</strong></h1>
+        </div>
+        <div class="col-3 text-end">
+            <button class="btn login__btn" (click)="createNewRole()">Create New Role</button>
+        </div>
+    </div>
+
+    <mat-form-field class="search-form-field essential-uesrs__search-bar">
+        <input matInput placeholder="Search" autocomplete="off" [(ngModel)]="searchKey" (keyup)="applyFilter($event)" />
+
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+    <!-- Essential Users Grid -->
+    <div class="mat-elevation-z8 custom-table-card">
+        <mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
+            <ng-container matColumnDef="roleName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Name
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.roleName }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <mat-header-cell class="justify-content-end" *matHeaderCellDef>Actions</mat-header-cell>
+                <mat-cell class="justify-content-end" *matCellDef="let row">
+                    <button mat-icon-button (click)="onView(row)">
+                        <!-- <mat-icon>remove_red_eye</mat-icon> -->
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M12 9.5854C10.5462 9.5854 9.39198 10.676 9.39198 12.0045C9.39198 13.333 10.5462 14.4236 12 14.4236C13.4537 14.4236 14.608 13.333 14.608 12.0045C14.608 10.676 13.4537 9.5854 12 9.5854ZM7.85352 12.0045C7.85352 9.85263 9.71799 8.13086 12 8.13086C14.282 8.13086 16.1464 9.85263 16.1464 12.0045C16.1464 14.1564 14.282 15.8782 12 15.8782C9.71799 15.8782 7.85352 14.1564 7.85352 12.0045Z"
+                                fill="#481A90" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M2.76005 9.32439C5.02627 6.00557 8.34919 4 12 4C15.651 4 18.9741 6.00576 21.2403 9.32487C21.7641 10.09 22 11.0669 22 12C22 12.9333 21.764 13.9104 21.2399 14.6756C18.9737 17.9944 15.6508 20 12 20C8.34901 20 5.02595 17.9942 2.75973 14.6751L3.406 14.2807L2.76038 14.6761C2.23609 13.9108 2 12.9335 2 12C2 11.0667 2.236 10.0896 2.76005 9.32439ZM12 5.45455C8.99087 5.45455 6.10663 7.10492 4.05227 10.1137L4.05162 10.1147C3.72688 10.5887 3.53846 11.2724 3.53846 12C3.53846 12.7276 3.72688 13.4113 4.05162 13.8853L4.05227 13.8863C6.10663 16.8951 8.99087 18.5455 12 18.5455C15.0091 18.5455 17.8934 16.8951 19.9477 13.8863L19.9484 13.8853C20.2731 13.4113 20.4615 12.7276 20.4615 12C20.4615 11.2724 20.2731 10.5887 19.9484 10.1147L19.9477 10.1137C17.8934 7.10492 15.0091 5.45455 12 5.45455Z"
+                                fill="#481A90" />
+                        </svg>
+                    </button>
+                    <button mat-icon-button color="warn" (click)="onEdit(row)">
+                        <!-- <mat-icon>edit</mat-icon> -->
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M4.52652 4.73453C5.63083 3.63021 7.28332 3.20801 9.41336 3.20801H11.0684C11.4112 3.20801 11.6891 3.48588 11.6891 3.82866C11.6891 4.17143 11.4112 4.4493 11.0684 4.4493H9.41336C7.40575 4.4493 6.16188 4.85463 5.40425 5.61226C4.64662 6.36989 4.2413 7.61376 4.2413 9.62137V14.5866C4.2413 16.5942 4.64662 17.838 5.40425 18.5957C6.16188 19.3533 7.40575 19.7586 9.41336 19.7586H14.3785C16.3862 19.7586 17.63 19.3533 18.3877 18.5957C19.1453 17.838 19.5506 16.5942 19.5506 14.5866V12.9315C19.5506 12.5887 19.8285 12.3108 20.1713 12.3108C20.514 12.3108 20.7919 12.5887 20.7919 12.9315V14.5866C20.7919 16.7166 20.3697 18.3691 19.2654 19.4734C18.1611 20.5777 16.5086 20.9999 14.3785 20.9999H9.41336C7.28332 20.9999 5.63083 20.5777 4.52652 19.4734C3.42221 18.3691 3 16.7166 3 14.5866V9.62137C3 7.49133 3.42221 5.83884 4.52652 4.73453Z"
+                                fill="#39B2E5" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M17.0239 3.01239C17.9453 2.92195 18.8587 3.32656 19.766 4.23389C20.6734 5.14122 21.078 6.05466 20.9875 6.97599C20.9003 7.86477 20.3643 8.60137 19.766 9.19962L13.2379 15.7278C13.0515 15.9081 12.8079 16.0657 12.5729 16.1838C12.3392 16.3012 12.064 16.4048 11.8017 16.4423L9.30763 16.7986C8.69353 16.8831 8.10596 16.7154 7.69373 16.3049C7.28062 15.8934 7.11164 15.3056 7.20196 14.688C7.20202 14.6876 7.20208 14.6872 7.20214 14.6868L7.55735 12.2003C7.55741 12.1999 7.55746 12.1995 7.55751 12.1992C7.59478 11.9333 7.69783 11.6561 7.81611 11.4208C7.93465 11.185 8.09425 10.9399 8.27935 10.7548L14.8003 4.23389C15.3985 3.63564 16.1351 3.09963 17.0239 3.01239ZM17.1452 4.24774C16.6851 4.29291 16.2052 4.58442 15.678 5.11162L9.15708 11.6326C9.09393 11.6957 9.00527 11.8189 8.9252 11.9782C8.84504 12.1377 8.79925 12.2821 8.78674 12.3718L8.78646 12.3738L8.43062 14.8647L8.43028 14.867C8.3886 15.151 8.47207 15.3281 8.56968 15.4253C8.66828 15.5236 8.84987 15.6082 9.13692 15.5691C9.13741 15.569 9.13791 15.5689 9.1384 15.5688L11.6261 15.2135C11.7113 15.2013 11.854 15.1559 12.0155 15.0747C12.1733 14.9954 12.3008 14.9062 12.3716 14.8386L18.8883 8.32189C19.4155 7.79469 19.707 7.31483 19.7522 6.85473C19.7941 6.42719 19.636 5.85935 18.8883 5.11162C18.1406 4.36389 17.5727 4.20578 17.1452 4.24774Z"
+                                fill="#39B2E5" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M14.1365 5.0105C14.4666 4.91798 14.8091 5.11053 14.9016 5.44058C15.3974 7.20911 16.7817 8.59478 18.5612 9.09897C18.891 9.19241 19.0826 9.53551 18.9892 9.8653C18.8957 10.1951 18.5526 10.3867 18.2228 10.2933C16.0302 9.672 14.3195 7.96271 13.7064 5.77564C13.6139 5.44559 13.8065 5.10303 14.1365 5.0105Z"
+                                fill="#39B2E5" />
+                        </svg>
+                    </button>
+                    <button mat-icon-button color="warn" (click)="onDelete(row)">
+                        <!-- <mat-icon>block</mat-icon> -->
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M18.7175 5.98993L5.98958 18.7178L5.28247 18.0107L18.0104 5.28282L18.7175 5.98993Z"
+                                fill="#D93636" />
+                            <circle cx="12" cy="12" r="9.25" stroke="#D93636" stroke-width="1.5" />
+                        </svg>
+                    </button>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="expandedDetail">
+                <mat-cell *matCellDef="let element" [attr.colspan]="2">
+                    <div [@detailExpand]="element.isExpanded ? 'expanded' : 'collapsed'">
+                        <mat-grid-list cols="2" rowHeight="30px" class="grid-layout-custom">
+                            <!-- sub-label section -->
+                            <mat-grid-tile colspan="1">
+                                <mat-label class="collapse-content__header">Business Entities:</mat-label>
+                            </mat-grid-tile>
+
+                            <mat-grid-tile colspan="1">
+                                <mat-label class="collapse-content__header">Privileges:</mat-label>
+                            </mat-grid-tile>
+
+                            <!-- sub-value section -->
+                            <div *ngFor="let action of element.roleActions">
+                                <mat-grid-tile colspan="1">
+                                    <mat-label class="collapse-content__value">{{action.groupName}}
+                                    </mat-label>
+                                </mat-grid-tile>
+
+                                <mat-grid-tile colspan="1">
+                                    <mat-label class="collapse-content__value">
+                                        <div class="me-3">
+                                            {{action.name}}
+                                        </div>
+                                    </mat-label>
+                                </mat-grid-tile>
+                            </div>
+                        </mat-grid-list>
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="loading">
+                <mat-footer-cell *matFooterCellDef colspan="6">
+                    LoadingData
+                </mat-footer-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="noData">
+                <mat-footer-cell *matFooterCellDef colspan="6">
+                    NoData
+                </mat-footer-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+            <mat-row *matRowDef="let row; columns: displayedColumns" class="element-row"
+                [class.expanded-row]="row.isExpanded">
+            </mat-row>
+
+            <!-- <mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></mat-row> -->
+            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20, 100]" showFirstLastButtons [length]="totalRows"
+            showFirstLastButtons [pageIndex]="currentPage" [pageSize]="pageSize" (page)="pageChanged($event)">
+        </mat-paginator>
+    </div>
+</section>

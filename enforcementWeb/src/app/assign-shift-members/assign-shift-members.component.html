@@ -1,0 +1,79 @@
+<section class="">
+    <section class="row">
+        <div class="col-12 row g-0 mb-3 align-items-center">
+            <span class="col-1">
+                <img class="pointer back-btn" src="../../assets/Icons/arrow-left-2.svg" (click)="goBack()" />
+            </span>
+            <span class="col-11">
+                <div class="shift-workforce__title"> Assign workforce members </div>
+            </span>
+        </div>
+        <div class="col-12">
+            <!-- <ol class="breadcrumb">
+                <li class="breadcrumb-item" *ngFor="let item of breadcrumbList; let i = index"
+                    [class.active]="i===breadcrumbList.length-1">
+                    <a [routerLink]="item.path" *ngIf="i!==breadcrumbList.length-1">
+                        {{ item.name }}
+                    </a>
+                    <span *ngIf="i===breadcrumbList.length-1">{{ item.name }}</span>
+                </li>
+            </ol> -->
+        </div>
+    </section>
+
+    <section>
+        <div class="" *ngIf="created">
+            <div class="alert success-alert" role="alert">
+                {{ createdMsg }}
+            </div>
+        </div>
+        <div class="" *ngIf="failed">
+            <div class="alert danger-alert" role="alert">
+                {{ createdMsg }}
+            </div>
+        </div>
+    </section>
+
+    <section class="row g-0 my-3">
+        <div class="shift-workforce__table table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th class="shift-workforce__left-section">Workforce Member</th>
+                        <th>Supervisor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let worker of freeWorkforcesList; let i = index;">
+                        <td class=" shift-workforce__left-section">
+                            <input type="checkbox" class="mx-2" [value]="worker?.id" (change)="choseWorker($event,i)"
+                                [checked]="!activeSupervisor[i]">
+                            <span class="shift-workforce__name">{{worker?.name}}</span>
+                        </td>
+                        <td>
+                            <!-- formControlName="workforceSupervisor" -->
+                            <!-- [disabled]="!activeSupervisor" -->
+                            <mat-form-field class="full-width" appearance="fill">
+                                <mat-label>Supervisor</mat-label>
+                                <mat-select #supervisorOption id="workforceSupervisor{{worker.id}}"
+                                    [disabled]="activeSupervisor[i]"
+                                    (selectionChange)=" chosenSupervisor($event,worker.id,i)">
+                                    <mat-option *ngFor="let supervisor of supervisorsList" [value]="supervisor.id">
+                                        {{supervisor.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="row g-0 justify-content-end">
+        <div class="col-12 col-md-6 px-2 text-end">
+            <button class="btn login__btn w-100" type="submit" (click)="assignShift()">Assign & Save Shift</button>
+            <!-- [disabled]=".valid" -->
+        </div>
+    </section>
+</section>

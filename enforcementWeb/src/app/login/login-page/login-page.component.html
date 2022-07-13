@@ -1,0 +1,50 @@
+<section class="login">
+    <img class="login__shapes ellipse-1" src="../../../assets/Icons/Ellipse 1.svg" />
+    <img class="login__shapes ellipse-2" src="../../../assets/Icons/Ellipse 2.svg" />
+
+    <section class="row g-0 login__content-container">
+        <div class="col-6">
+            <img class="login__logo" src="../../../assets/Icons/Logo.svg" alt="" />
+            <div class="login__welcome">Welcome Back!</div>
+            <h3 class="login__title"> Login to your Account </h3>
+
+            <div *ngIf="errorActive">
+                <div class="alert danger-alert" role="alert">
+                    {{errMsg}}
+                </div>
+            </div>
+            <!-- form-group -->
+            <form class="example-form" [formGroup]="loginForm" (ngSubmit)="login()">
+                <div class="col-12">
+                    <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Username</mat-label>
+                        <input matInput placeholder="enter your username" name="name" id="name"
+                            formControlName="userName">
+                        <mat-error *ngIf="loginForm.controls.userName.errors">
+                            Please enter username
+                        </mat-error>
+                    </mat-form-field>
+
+                </div>
+
+                <div class="col-12">
+                    <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Password</mat-label>
+                        <input matInput type="password" name="pass" id="pass" formControlName="password"
+                            placeholder="enter your password" [type]="hide? 'password': 'text'">
+                        <i class="material-icons" matSuffix (click)="hide = !hide">{{hide? 'visibility':
+                            'visibility_off'}}</i>
+                        <mat-error *ngIf="loginForm.controls.password.errors">
+                            Please enter password
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="login__reset-password d-block mb-4 text-end"> <span class="pointer"
+                        (click)="resetPassword()">Forget Password?</span>
+                </div>
+
+                <button type="submit" class="btn login__btn full-width">Login</button>
+            </form>
+        </div>
+    </section>
+</section>

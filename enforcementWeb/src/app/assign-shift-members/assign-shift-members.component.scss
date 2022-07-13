@@ -1,0 +1,31 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/global";
+
+.shift-workforce {
+  font-family: Poppins;
+  font-style: normal;
+
+  &__title {
+    color: #14171a;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 48px;
+  }
+
+  &__name {
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 16px;
+    color: #14171a;
+  }
+
+  &__table {
+    max-height: 25rem;
+    overflow-y: auto;
+  }
+
+  &__left-section {
+    background: #f9f7ff;
+    border-radius: 4px 0px 0px 4px;
+  }
+}

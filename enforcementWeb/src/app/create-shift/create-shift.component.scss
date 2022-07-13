@@ -1,0 +1,14 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/global";
+
+.create-shift {
+  font-family: Poppins;
+  font-style: normal;
+
+  &__title {
+    color: #14171a;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 48px;
+  }
+}

@@ -1,0 +1,102 @@
+<section class="">
+    <section class="row mb-5">
+        <div class="col-12 row g-0 mb-3 align-items-center">
+            <span class="col-1">
+                <img class="pointer back-btn" src="../../assets/Icons/arrow-left-2.svg" (click)="goBack()" />
+            </span>
+            <span class="col-11">
+                <div class="create-workforce__title"> Create workforce member </div>
+            </span>
+        </div>
+        <div class="col-12">
+            <!-- <ol class="breadcrumb">
+                <li class="breadcrumb-item" *ngFor="let item of breadcrumbList; let i = index"
+                    [class.active]="i===breadcrumbList.length-1">
+                    <a [routerLink]="item.path" *ngIf="i!==breadcrumbList.length-1">
+                        {{ item.name }}
+                    </a>
+                    <span *ngIf="i===breadcrumbList.length-1">{{ item.name }}</span>
+                </li>
+            </ol> -->
+        </div>
+    </section>
+
+    <section>
+        <div class="" *ngIf="created">
+            <div class="alert success-alert" role="alert">
+                {{ createdMsg }}
+            </div>
+        </div>
+        <div class="" *ngIf="failed">
+            <div class="alert danger-alert" role="alert">
+                {{ createdMsg }}
+            </div>
+        </div>
+    </section>
+
+    <form class="form-group" [formGroup]="Member" (ngSubmit)="createMember()">
+        <section class="row g-0 mb-4">
+            <div class="col-12 col-md-6">
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Fullname</mat-label>
+                    <input matInput formControlName="fullName" id="full-name" placeholder="enter full name here"
+                        required>
+                    <mat-error *ngIf="Member.controls.fullName.errors">
+                        Name is Required
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="memberEmail" placeholder="pat@example.com" id="email">
+                    <!-- placeholder="enter email here" -->
+                    <mat-error *ngIf="Member.controls.memberEmail.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+
+                <!-- <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Phone</mat-label>
+                    <input matInput type="tel" formControlName="memberPhone" id="phone" placeholder="+2 0111-313-6831"
+                        name="phone" required> -->
+                <!-- pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" placeholder="enter phone number here" -->
+                <!-- <mat-error *ngIf="Member.controls.userPhone.invalid">{{getPhoneErrorMessage()}}</mat-error> -->
+                <!-- </mat-form-field> -->
+                <ngx-intl-tel-input class="full-width mat-form-field-wrapper" [cssClass]="'custom'"
+                    [preferredCountries]="preferredCountries" [enableAutoCountrySelect]="true"
+                    [enablePlaceholder]="true" [searchCountryFlag]="true"
+                    [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                    [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.SaudiArabia" [maxLength]="15"
+                    [phoneValidation]="true" [separateDialCode]="separateDialCode"
+                    [numberFormat]="PhoneNumberFormat.National" name="phone" formControlName="memberPhone">
+                </ngx-intl-tel-input>
+
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Role</mat-label>
+                    <mat-select formControlName="memberRole" id="role" aria-required="true">
+                        <!-- <mat-option value=""> select role </mat-option> -->
+                        <mat-option *ngFor="let role of roles" [value]="role">{{role}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-12 col-md-6 px-2">
+                <label class="file-upload__title"> Upload User Image </label> <span class="file-upload__title-optional">
+                    (Optional) </span>
+                <input type="file" class="file-input" file (change)="onFileSelected($event)" #fileUpload>
+                <!-- formControlName="memberImage" -->
+                <!-- (change)="console.log(event.target.files[0])" -->
+
+                <div class="file-upload row g-0">
+                    <!-- <button mat-mini-fab color="primary" class="upload-btn"> -->
+                    <!-- </button> -->
+                    <label class="file-upload__txt pointer" (click)="fileUpload.click()">
+                        {{fileName || "Click Here To Upload Image"}}
+                    </label>
+                </div>
+            </div>
+        </section>
+        <section class="row g-0 justify-content-end">
+            <div class="col-12 col-md-6 px-2 text-end">
+                <button class="btn login__btn w-100" type="submit" [disabled]="!Member.valid">Save Member</button>
+            </div>
+        </section>
+    </form>
+</section>
