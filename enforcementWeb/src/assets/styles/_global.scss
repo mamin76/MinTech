@@ -1,0 +1,159 @@
+@import "./variables.scss";
+
+.ellipse-1 {
+  top: 0;
+  right: 0;
+}
+
+.success-alert {
+  color: #fff;
+  background-color: #31cc53;
+  border-color: #badbcc;
+  //   color: #0f5132;
+  //   background-color: #d1e7dd;
+}
+
+.danger-alert {
+  color: #fff;
+  background-color: #d93636;
+  border-color: #f5c2c7;
+  //   background-color: #f8d7da;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background: #f8f9fa;
+  border: 2px solid #cdd4db;
+  border-radius: 8px 8px 0 0 !important;
+}
+
+.ellipse-2 {
+  bottom: 0;
+  left: 0;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.collapse-content {
+  &__header {
+    font-size: 12px;
+    line-height: 12px;
+    color: #6b757e;
+  }
+  &__value {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 14px;
+    color: #14171a;
+  }
+}
+
+.mat-grid-tile .mat-figure {
+  justify-content: start !important;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.login {
+  font-family: Poppins;
+  font-style: normal;
+
+  &__content-container {
+    padding-top: 3rem;
+    justify-content: center;
+    // text-align: center;
+    @media screen and (min-width: 768px) {
+      padding-top: 4rem;
+    }
+  }
+
+  &__shapes {
+    width: 5rem;
+    position: absolute;
+    @media screen and (min-width: 768px) {
+      width: initial;
+    }
+  }
+
+  &__logo {
+    width: 7rem;
+    margin-bottom: 2.5rem;
+    @media screen and (min-width: 768px) {
+      width: 15rem;
+      margin-bottom: 3rem;
+    }
+  }
+
+  &__welcome {
+    color: $subTitleColor;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 20px;
+  }
+
+  &__title {
+    color: $titleColor;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 48px;
+  }
+
+  &__btn {
+    font-weight: 600;
+    font-size: 20px;
+    border-radius: 8px;
+    background: $btnColor;
+  }
+}
+
+.back-btn {
+  background: #f9f7ff;
+  border-radius: 4px;
+}
+
+.example-header {
+  display: flex;
+  align-items: center;
+  padding: 0.5em;
+}
+
+.example-header-label {
+  flex: 1;
+  height: 1em;
+  font-weight: 500;
+  text-align: center;
+}
+
+.example-double-arrow .mat-icon {
+  margin: -22%;
+}
+
+.edit-btn {
+  color: #003f40;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 16px;
+  text-align: center;
+  background: #00d8db;
+  border-radius: 8px;
+  margin: 0 0.25rem;
+  padding: 1rem 2.5rem;
+  border: 0;
+}
+
+.danger-btn {
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 16px;
+  text-align: center;
+  background: #d93636;
+  border-radius: 8px;
+  margin: 0 0.25rem;
+  padding: 1rem 2.5rem;
+  border: 0;
+}
