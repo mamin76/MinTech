@@ -1,0 +1,1 @@
+package com.eden.enforcementService.common.dto;public interface CitationRevenueProjection {    double getTotalFees();    Long getMonth();}

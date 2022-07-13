@@ -1,0 +1,1 @@
+package com.eden.enforcementService.common.dto;import com.eden.enforcementService.common.model.enums.PenalityStatus;public interface CitationPenaltiesProjection {    double getFees();    Long getPenaltyCount();    PenalityStatus getStatus();}
