@@ -1,0 +1,31 @@
+.shift-card {
+  color: #fff;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  background-color: #6b757e;
+  border-radius: 8px;
+
+  &__header {
+    font-size: 12px;
+    line-height: 12px;
+    letter-spacing: 0.02em;
+  }
+
+  &__name {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  &__members-number {
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 12px;
+    letter-spacing: 0.02em;
+  }
+
+  &__time {
+    font-size: 14px;
+    line-height: 14px;
+  }
+}

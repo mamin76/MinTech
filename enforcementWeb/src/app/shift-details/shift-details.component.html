@@ -1,0 +1,298 @@
+<section class="shift-detail row">
+    <div class="col-12 row g-0 mb-3 align-items-center">
+        <span class="col-1">
+            <img class="pointer back-btn" src="../../assets/Icons/arrow-left-2.svg" (click)="goBack()" />
+        </span>
+        <span class="col-5">
+            <div class="shift-detail__title"> Shift Details </div>
+        </span>
+        <div class="col-6 space-between shift-detail__shift-actions">
+            <button type="button" class="btn danger-btn" *ngIf="!editShiftTime && !editWorkforce"
+                data-bs-toggle=" modal" data-bs-target="#staticBackdrop" (click)="deleteShift()">Delete Shift</button>
+            <button class="btn edit-btn" *ngIf="!editShiftTime && !editWorkforce" (click)="editShiftDate()">Edit Shift
+                Date</button>
+        </div>
+    </div>
+    <div class="col-12">
+        <!-- <ol class="breadcrumb">
+            <li class="breadcrumb-item" *ngFor="let item of breadcrumbList; let i = index"
+                [class.active]="i===breadcrumbList.length-1">
+                <a [routerLink]="item.path" *ngIf="i!==breadcrumbList.length-1">
+                    {{ item.name }}
+                </a>
+                <span *ngIf="i===breadcrumbList.length-1">{{ item.name }}</span>
+            </li>
+        </ol> -->
+    </div>
+
+    <div *ngIf="success">
+        <div class="alert success-alert" role="alert">
+            {{successMsg}}
+        </div>
+    </div>
+    <div *ngIf="failed">
+        <div class="alert danger-alert" role="alert">
+            {{errMsg}}
+        </div>
+    </div>
+
+    <section class="row g-0">
+        <div class="col-12 shift-detail__card mb-2">
+            <div class="shift-detail__card-header row g-0">
+                <div class="col-2 shift-detail__card-header-left">#{{shiftCardDetail.id}}</div>
+                <div class="col shift-detail__card-header-right">Dec 22 <span class="shift-detail__selected-day">
+                        (Selected
+                        Day) </span></div>
+            </div>
+            <div class="shift-detail__card-body row">
+                <div class="col-12 col-md-6">
+                    <div class="shift-detail__label">Shift Label</div>
+                    <div class="shift-detail__label-value">{{ shiftCardDetail.name }}</div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="shift-detail__label">Shift Role</div>
+                    <div class="shift-detail__label-value">{{ shiftCardDetail.role.name }}</div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="row g-0">
+                        <div class="col-6">
+                            <div class="shift-detail__label">Start Time</div>
+                            <div class="d-inline-block shift-detail__icon-holder">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M12 3.39535C7.25043 3.39535 3.39535 7.25043 3.39535 12C3.39535 16.7496 7.25043 20.6047 12 20.6047C16.7496 20.6047 20.6047 16.7496 20.6047 12C20.6047 7.25043 16.7496 3.39535 12 3.39535ZM2 12C2 6.4798 6.4798 2 12 2C17.5202 2 22 6.4798 22 12C22 17.5202 17.5202 22 12 22C6.4798 22 2 17.5202 2 12Z"
+                                        fill="#6B757E" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M11.6558 7.125C12.0411 7.125 12.3535 7.43736 12.3535 7.82267V11.6366C12.3535 11.7795 12.408 11.9865 12.5293 12.1991C12.6506 12.4119 12.8009 12.564 12.9231 12.6364L12.925 12.6375L12.925 12.6375L15.8087 14.3585C16.1396 14.5559 16.2477 14.9842 16.0503 15.3151C15.8528 15.646 15.4245 15.7541 15.0936 15.5567L12.2118 13.8368C12.2114 13.8366 12.2111 13.8364 12.2108 13.8363C11.8311 13.611 11.5259 13.2564 11.3172 12.8904C11.1082 12.524 10.9581 12.0798 10.9581 11.6366V7.82267C10.9581 7.43736 11.2705 7.125 11.6558 7.125Z"
+                                        fill="#6B757E" />
+                                </svg>
+                            </div>
+                            <div class="shift-detail__label-value d-inline-block">{{ shiftCardDetail.startTime }}
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="shift-detail__label">End Time</div>
+                            <div class="d-inline-block shift-detail__icon-holder">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M12 3.39535C7.25043 3.39535 3.39535 7.25043 3.39535 12C3.39535 16.7496 7.25043 20.6047 12 20.6047C16.7496 20.6047 20.6047 16.7496 20.6047 12C20.6047 7.25043 16.7496 3.39535 12 3.39535ZM2 12C2 6.4798 6.4798 2 12 2C17.5202 2 22 6.4798 22 12C22 17.5202 17.5202 22 12 22C6.4798 22 2 17.5202 2 12Z"
+                                        fill="#6B757E" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M11.6558 7.125C12.0411 7.125 12.3535 7.43736 12.3535 7.82267V11.6366C12.3535 11.7795 12.408 11.9865 12.5293 12.1991C12.6506 12.4119 12.8009 12.564 12.9231 12.6364L12.925 12.6375L12.925 12.6375L15.8087 14.3585C16.1396 14.5559 16.2477 14.9842 16.0503 15.3151C15.8528 15.646 15.4245 15.7541 15.0936 15.5567L12.2118 13.8368C12.2114 13.8366 12.2111 13.8364 12.2108 13.8363C11.8311 13.611 11.5259 13.2564 11.3172 12.8904C11.1082 12.524 10.9581 12.0798 10.9581 11.6366V7.82267C10.9581 7.43736 11.2705 7.125 11.6558 7.125Z"
+                                        fill="#6B757E" />
+                                </svg>
+                            </div>
+                            <div class="shift-detail__label-value d-inline-block">{{ shiftCardDetail.endTime }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="row g-0">
+                        <div class="col-6">
+                            <div class="shift-detail__label">Start Date</div>
+                            <div class="d-inline-block shift-detail__icon-holder">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M8.30769 2C8.69005 2 9 2.27739 9 2.61957V5.09783C9 5.44 8.69005 5.71739 8.30769 5.71739C7.92534 5.71739 7.61539 5.44 7.61539 5.09783V2.61957C7.61539 2.27739 7.92534 2 8.30769 2Z"
+                                        [attr.fill]="!editShiftTime? '#6B757E': '#39B2E6'" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M15.6923 2C16.0747 2 16.3846 2.27739 16.3846 2.61957V5.09783C16.3846 5.44 16.0747 5.71739 15.6923 5.71739C15.31 5.71739 15 5.44 15 5.09783V2.61957C15 2.27739 15.31 2 15.6923 2Z"
+                                        [attr.fill]="!editShiftTime? '#6B757E': '#39B2E6'" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M3.46153 8.47601C3.46153 8.13383 3.77149 7.85645 4.15384 7.85645H19.8461C20.2285 7.85645 20.5385 8.13383 20.5385 8.47601C20.5385 8.81819 20.2285 9.09558 19.8461 9.09558H4.15384C3.77149 9.09558 3.46153 8.81819 3.46153 8.47601Z"
+                                        [attr.fill]="!editShiftTime? '#6B757E': '#39B2E6'" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M5.29578 5.3718C4.70434 5.99282 4.38462 6.92847 4.38462 8.175V15.825C4.38462 17.0715 4.70434 18.0072 5.29578 18.6282C5.8786 19.2402 6.82426 19.65 8.30769 19.65H15.6923C17.1757 19.65 18.1214 19.2402 18.7042 18.6282C19.2957 18.0072 19.6154 17.0715 19.6154 15.825V8.175C19.6154 6.92847 19.2957 5.99282 18.7042 5.3718C18.1214 4.75985 17.1757 4.35 15.6923 4.35H8.30769C6.82426 4.35 5.8786 4.75985 5.29578 5.3718ZM4.28114 4.4532C5.19833 3.49015 6.56035 3 8.30769 3H15.6923C17.4396 3 18.8017 3.49015 19.7189 4.4532C20.6274 5.40718 21 6.72153 21 8.175V15.825C21 17.2785 20.6274 18.5928 19.7189 19.5468C18.8017 20.5098 17.4396 21 15.6923 21H8.30769C6.56035 21 5.19833 20.5098 4.28114 19.5468C3.37259 18.5928 3 17.2785 3 15.825V8.175C3 6.72153 3.37259 5.40718 4.28114 4.4532Z"
+                                        [attr.fill]="!editShiftTime? '#6B757E': '#39B2E6'" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M7 12C7 11.4477 7.44571 11 7.99553 11H8.00447C8.55429 11 9 11.4477 9 12C9 12.5523 8.55429 13 8.00447 13H7.99553C7.44571 13 7 12.5523 7 12Z"
+                                        [attr.fill]="!editShiftTime? '#6B757E': '#39B2E6'" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M7 16C7 15.4477 7.44571 15 7.99553 15H8.00447C8.55429 15 9 15.4477 9 16C9 16.5523 8.55429 17 8.00447 17H7.99553C7.44571 17 7 16.5523 7 16Z"
+                                        [attr.fill]="!editShiftTime? '#6B757E': '#39B2E6'" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M11 12C11 11.4477 11.4457 11 11.9955 11H12.0045C12.5543 11 13 11.4477 13 12C13 12.5523 12.5543 13 12.0045 13H11.9955C11.4457 13 11 12.5523 11 12Z"
+                                        [attr.fill]="!editShiftTime? '#6B757E': '#39B2E6'" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M11 16C11 15.4477 11.4457 15 11.9955 15H12.0045C12.5543 15 13 15.4477 13 16C13 16.5523 12.5543 17 12.0045 17H11.9955C11.4457 17 11 16.5523 11 16Z"
+                                        [attr.fill]="!editShiftTime? '#6B757E': '#39B2E6'" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M15 12C15 11.4477 15.4457 11 15.9955 11H16.0045C16.5543 11 17 11.4477 17 12C17 12.5523 16.5543 13 16.0045 13H15.9955C15.4457 13 15 12.5523 15 12Z"
+                                        [attr.fill]="!editShiftTime? '#6B757E': '#39B2E6'" />
+                                </svg>
+                            </div>
+                            <input #startDate type="text" [disabled]="!editShiftTime"
+                                value="{{shiftCardDetail.startDate}}" class="shift-detail__label-value"
+                                [class]="!editShiftTime? '' : 'editable-text'" />
+                        </div>
+
+                        <div class="col-6">
+                            <div class="shift-detail__label">End Date</div>
+                            <div class="d-inline-block shift-detail__icon-holder">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns=" http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M8.30769 2C8.69005 2 9 2.27739 9 2.61957V5.09783C9 5.44 8.69005 5.71739 8.30769 5.71739C7.92534 5.71739 7.61539 5.44 7.61539 5.09783V2.61957C7.61539 2.27739 7.92534 2 8.30769 2Z"
+                                        [attr.fill]="!editShiftTime? '#6B757E': '#39B2E6'" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M15.6923 2C16.0747 2 16.3846 2.27739 16.3846 2.61957V5.09783C16.3846 5.44 16.0747 5.71739 15.6923 5.71739C15.31 5.71739 15 5.44 15 5.09783V2.61957C15 2.27739 15.31 2 15.6923 2Z"
+                                        [attr.fill]="!editShiftTime? '#6B757E': '#39B2E6'" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M3.46153 8.47601C3.46153 8.13383 3.77149 7.85645 4.15384 7.85645H19.8461C20.2285 7.85645 20.5385 8.13383 20.5385 8.47601C20.5385 8.81819 20.2285 9.09558 19.8461 9.09558H4.15384C3.77149 9.09558 3.46153 8.81819 3.46153 8.47601Z"
+                                        [attr.fill]="!editShiftTime? '#6B757E': '#39B2E6'" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M5.29578 5.3718C4.70434 5.99282 4.38462 6.92847 4.38462 8.175V15.825C4.38462 17.0715 4.70434 18.0072 5.29578 18.6282C5.8786 19.2402 6.82426 19.65 8.30769 19.65H15.6923C17.1757 19.65 18.1214 19.2402 18.7042 18.6282C19.2957 18.0072 19.6154 17.0715 19.6154 15.825V8.175C19.6154 6.92847 19.2957 5.99282 18.7042 5.3718C18.1214 4.75985 17.1757 4.35 15.6923 4.35H8.30769C6.82426 4.35 5.8786 4.75985 5.29578 5.3718ZM4.28114 4.4532C5.19833 3.49015 6.56035 3 8.30769 3H15.6923C17.4396 3 18.8017 3.49015 19.7189 4.4532C20.6274 5.40718 21 6.72153 21 8.175V15.825C21 17.2785 20.6274 18.5928 19.7189 19.5468C18.8017 20.5098 17.4396 21 15.6923 21H8.30769C6.56035 21 5.19833 20.5098 4.28114 19.5468C3.37259 18.5928 3 17.2785 3 15.825V8.175C3 6.72153 3.37259 5.40718 4.28114 4.4532Z"
+                                        [attr.fill]="!editShiftTime? '#6B757E': '#39B2E6'" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M7 12C7 11.4477 7.44571 11 7.99553 11H8.00447C8.55429 11 9 11.4477 9 12C9 12.5523 8.55429 13 8.00447 13H7.99553C7.44571 13 7 12.5523 7 12Z"
+                                        [attr.fill]="!editShiftTime? '#6B757E': '#39B2E6'" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M7 16C7 15.4477 7.44571 15 7.99553 15H8.00447C8.55429 15 9 15.4477 9 16C9 16.5523 8.55429 17 8.00447 17H7.99553C7.44571 17 7 16.5523 7 16Z"
+                                        [attr.fill]="!editShiftTime? '#6B757E': '#39B2E6'" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M11 12C11 11.4477 11.4457 11 11.9955 11H12.0045C12.5543 11 13 11.4477 13 12C13 12.5523 12.5543 13 12.0045 13H11.9955C11.4457 13 11 12.5523 11 12Z"
+                                        [attr.fill]="!editShiftTime? '#6B757E': '#39B2E6'" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M11 16C11 15.4477 11.4457 15 11.9955 15H12.0045C12.5543 15 13 15.4477 13 16C13 16.5523 12.5543 17 12.0045 17H11.9955C11.4457 17 11 16.5523 11 16Z"
+                                        [attr.fill]="!editShiftTime? '#6B757E': '#39B2E6'" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M15 12C15 11.4477 15.4457 11 15.9955 11H16.0045C16.5543 11 17 11.4477 17 12C17 12.5523 16.5543 13 16.0045 13H15.9955C15.4457 13 15 12.5523 15 12Z"
+                                        [attr.fill]="!editShiftTime? '#6B757E': '#39B2E6'" />
+                                </svg>
+                            </div>
+                            <input #endDate type="text" [disabled]="!editShiftTime" value="{{shiftCardDetail.endDate}}"
+                                class="d-inline-block shift-detail__label-value"
+                                [class]="!editShiftTime? '' : 'editable-text'" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-12 text-end">
+            <button class="shift-detail__update-btn" *ngIf="editShiftTime && !editWorkforce"
+                (click)="handleSaveShift()"> Save Shift
+            </button>
+        </div>
+    </section>
+
+    <section class="row g-0 align-items-center">
+        <div class="col-12 col-md-9">
+            <div class="shift-detail__subtitle">Shift Workforce Members</div>
+        </div>
+
+        <div class="col-12 col-md-3 text-end">
+            <button class="shift-detail__update-btn" *ngIf="!editShiftTime && !editWorkforce"
+                (click)="handleEditWorkforce()"> Edit Workforce </button>
+        </div>
+    </section>
+
+    <section class="shift-detail__table-wrapper">
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 custom-table-card">
+
+            <!-- Checkbox Column -->
+            <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()"
+                        [style.display]="!editWorkforce? 'none':'block'">
+                    </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)"
+                        [style.display]="!editWorkforce? 'none':'block'">
+                    </mat-checkbox>
+                </td>
+            </ng-container>
+
+            <!-- id Column -->
+            <!-- <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> id </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container> -->
+            <!-- endTime: "17:00:00"
+                id: null
+                startTime: "09:00:00"
+                supervisorName: "Soso"
+                workforceName: "atef" -->
+            <!-- employee Column -->
+            <ng-container matColumnDef="employee">
+                <th mat-header-cell *matHeaderCellDef> employee </th>
+                <td mat-cell *matCellDef="let element"> {{element.employee.name}} </td>
+            </ng-container>
+
+            <!-- supervisor Column -->
+            <ng-container matColumnDef="supervisor">
+                <th mat-header-cell *matHeaderCellDef> Supervisor </th>
+                <td mat-cell *matCellDef="let element" class="px-3">
+                    <select class="form-control" id="supervisorsList" aria-required="true" [disabled]="!editWorkforce">
+                        <option> {{element.supervisor.name}} </option>
+                        <option *ngFor="let supervisor of supervisorsList" [value]="supervisor.id">{{supervisor.name}}
+                        </option>
+                    </select>
+
+                </td>
+            </ng-container>
+
+            <!-- StartTime Column -->
+            <ng-container matColumnDef="shiftStartTime">
+                <th mat-header-cell *matHeaderCellDef> Start Time </th>
+                <td mat-cell *matCellDef="let element">
+                    <input type="time" value="{{element.shiftStartTime}}" [disabled]="!editWorkforce">
+                </td>
+            </ng-container>
+
+            <!-- endTime Column -->
+            <ng-container matColumnDef="shiftEndTime">
+                <th mat-header-cell *matHeaderCellDef> End Time </th>
+                <td mat-cell *matCellDef="let element">
+                    <input type="time" value="{{element.shiftEndTime}}" [disabled]="!editWorkforce">
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+            </tr>
+        </table>
+    </section>
+    <div class="row g-0 justify-content-end text-end">
+        <button class="col-12 col-md-3 shift-detail__update-btn" *ngIf="editWorkforce" (click)="handleSaveWorkforce()">
+            Save Workforce
+        </button>
+    </div>
+</section>
+
+<!-- Modal -->
+<div class="modal" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-hidden="true"
+    [ngStyle]="{'display':display}">
+    <!-- <div class="modal modal-fade" tabindex="-1" role="dialog" [ngStyle]="{'display':display}" data-bs-backdrop="static"
+    aria-labelledby="staticBackdropLabel"> -->
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title" id="staticBackdropLabel">Are you sure?</span>
+                <button type="button" class="btn-close" (click)="cancelDelete()" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                You’re are going to delete shift
+                “shift {{shiftCardDetail.name}}”, please confirm deletion
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn cancel-delete" data-bs-dismiss="modal" (click)="cancelDelete()">Cancel
+                    Deletion</button>
+                <button type="button" class="btn approve-delete" (click)="confirmDelete()">Delete Shift</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal -->

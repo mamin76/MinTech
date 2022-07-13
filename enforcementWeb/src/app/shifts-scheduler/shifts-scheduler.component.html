@@ -1,0 +1,66 @@
+<section class="row g-0 align-items-center">
+    <div class="col-12 row g-0 mb-5">
+        <div class="col-9">
+            <h1><strong>Shifts Scheduler</strong></h1>
+        </div>
+        <div class="col-3 text-end">
+            <button class="btn login__btn" (click)="createShift()">Create New Shift</button>
+        </div>
+    </div>
+
+    <mat-form-field class="search-form-field essential-uesrs__search-bar">
+        <input matInput placeholder="Search by shift label, and/or role name" autocomplete="off" [(ngModel)]="searchKey"
+            (keyup)="applyFilter()" />
+
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <div class="container-fluid filter-by-date">
+        <!-- filter by date container -->
+        <div class="row">
+            <div class="col">
+                <span>December 22 - 28, 2021</span>&nbsp; &nbsp;
+                <span>&lt; </span>
+                <span>&gt; </span>
+            </div>
+            <div class="col">
+                <input [(ngModel)]="selectedDateRange" [owlDateTime]="dt1" [selectMode]="'range'"
+                    [owlDateTimeTrigger]="dt1" placeholder="Filter by Date">
+                <!-- <span [owlDateTimeTrigger]="dt1"><i class="fas fa-calendar"></i></span> -->
+                <owl-date-time [pickerType]="'calendar'" [dateTimeChange]="onSelectedDateRange()" #dt1></owl-date-time>
+            </div>
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Week</mat-label>
+                    <mat-select [value]="">
+                        <mat-option>
+                            Week
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <br />
+
+    <section class="row" *ngFor="let role of roles">
+        <!-- <div *ngFor="let role of roles"> -->
+        {{role.title}}
+
+        <div class="row shift-details">
+            <div class="col-4 shift-details-card" *ngFor="let shift of role.roles">
+                <app-shift-details-card [title]="shift.id" [name]="shift.name" [membersCount]="shift.workforceNumber"
+                    [day]="shift.day" [shiftStartTime]="shift.shiftStartTime" [shiftEndTime]="shift.shiftEndTime" [roleName]="role.title">
+                </app-shift-details-card>
+            </div>
+        </div>
+
+        <!-- </div> -->
+        <!-- <div class="col-4" *ngFor="let shift of shifts">
+            <app-shift-details-card [title]="shift.title" [name]="shift.name" [membersCount]="shift.membersCount"
+                [time]="shift.time"></app-shift-details-card>
+        </div> -->
+    </section>
+</section>

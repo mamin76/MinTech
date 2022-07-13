@@ -1,0 +1,48 @@
+.custom-table-card {
+  max-width: 100%;
+  overflow: auto;
+}
+
+.mat-header-cell,
+.mat-footer-cell,
+.mat-cell {
+  min-width: 80px;
+  box-sizing: border-box;
+}
+
+.mat-column-index {
+  max-width: 10% !important;
+}
+
+.mat-column-id {
+  max-width: 10% !important;
+}
+
+.mat-column-enName {
+  max-width: 40% !important;
+}
+
+.mat-column-type {
+  max-width: 20% !important;
+}
+
+.mat-column-fees {
+  max-width: 10% !important;
+}
+
+.mat-column-actions {
+  max-width: 10% !important;
+}
+
+.text-center .btn {
+  width: 100%;
+}
+
+.breadcrumb-content {
+  display: flex;
+  padding: 0 42px;
+}
+
+.breadcrumb {
+  padding: 0 5px;
+}

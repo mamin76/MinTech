@@ -1,0 +1,15 @@
+<div class="card shift-card">
+    <div class="card-body">
+        <div class="row g-0">
+            <div class="col-10 shift-card__title"># {{title}} </div>
+            <div class="col-2 text-end">
+                <i class="material-icons pointer" matSuffix (click)="viewShiftDetails()">{{
+                    'visibility'}}</i>
+            </div>
+        </div>
+        <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+        <p class="card-text shift-card__name"> {{name}} </p>
+        <p class="card-text shift-card__members-number"> Members: {{membersCount}} </p>
+        <p class="card-text shift-card__time"> {{time}}</p>
+    </div>
+</div>

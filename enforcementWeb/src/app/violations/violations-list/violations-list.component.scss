@@ -1,0 +1,38 @@
+.custom-table-card {
+  max-width: 100%;
+  overflow: auto;
+}
+
+.mat-header-cell,
+.mat-footer-cell,
+.mat-cell {
+  min-width: 80px;
+  box-sizing: border-box;
+}
+
+.mat-column-index {
+  max-width: 10% !important;
+}
+
+.mat-column-id {
+  max-width: 25% !important;
+}
+
+.mat-column-enName {
+  max-width: 50% !important;
+}
+
+.mat-column-actions {
+  max-width: 15% !important;
+}
+
+.text-center .btn {
+  margin: 0px 12px;
+  width: 45%;
+}
+
+.mat-spinner {
+  position: absolute;
+  top: 50%;
+  left: 44%;
+}

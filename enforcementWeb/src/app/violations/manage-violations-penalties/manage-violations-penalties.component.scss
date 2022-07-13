@@ -1,0 +1,35 @@
+.custom-table-card {
+  max-width: 100%;
+  overflow: auto;
+}
+
+.mat-header-cell,
+.mat-footer-cell,
+.mat-cell {
+  min-width: 80px;
+  box-sizing: border-box;
+}
+
+.mat-column-index {
+  max-width: 10% !important;
+}
+
+.mat-column-id {
+  max-width: 10% !important;
+}
+
+.mat-column-enName {
+  max-width: 50% !important;
+}
+
+.mat-column-fees {
+  max-width: 15% !important;
+}
+
+.mat-column-actions {
+  max-width: 15% !important;
+}
+
+.text-center .btn {
+  width: 100%;
+}

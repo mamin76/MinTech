@@ -1,0 +1,161 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/global";
+
+table {
+  width: 100%;
+}
+
+.shift-detail {
+  color: #14171a;
+  font-family: Poppins;
+  font-style: normal;
+
+  input {
+    width: 8rem;
+    margin: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  &__icon-holder {
+    font-size: 20px;
+    margin-right: 0.5rem;
+  }
+
+  .editable-text {
+    color: $babyBlue;
+  }
+
+  &__title {
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 48px;
+  }
+
+  &__shift-actions {
+    text-align: right;
+  }
+
+  &__update-btn {
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+    text-align: center;
+    background: $babyBlue;
+    border-radius: 8px;
+    padding: 1rem 2.5rem;
+    border: 0;
+  }
+
+  &__card {
+    background: #f8f9fa;
+    border-radius: 8px;
+  }
+
+  &__card-header {
+    padding: 1.5rem 2rem;
+    background: #e9ecef;
+    border-radius: 8px 8px 0px 0px;
+  }
+
+  &__selected-day {
+    font-weight: 400;
+  }
+
+  &__card-header-left {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  &__card-header-right {
+    text-align: right;
+
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  &__card-body {
+    padding: 1.625rem;
+  }
+
+  &__subtitle {
+    margin: 0.75rem 0;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  &__label {
+    margin: 0.75rem 0;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 16px;
+  }
+
+  &__label-value {
+    margin: 0.75rem 0;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  &__table-wrapper {
+    margin: 2rem 0;
+    max-height: 27.625rem;
+    overflow-y: auto;
+  }
+}
+
+.modal-content {
+}
+
+.modal-header {
+  color: white;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 20px;
+  background: #d93636;
+  border-radius: 16px 16px 0px 0px;
+}
+
+.modal-body {
+  color: #6b757e;
+  font-weight: normal;
+  font-size: 18px;
+  text-align: center;
+  line-height: 30px;
+}
+
+.modal-content {
+  border-radius: 16px;
+}
+
+.cancel-delete {
+  color: #6b757e;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 16px;
+  text-align: center;
+  border: 2px solid #acb5be;
+  box-sizing: border-box;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+}
+
+.approve-delete {
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 16px;
+  background: #d93636;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+}
+
+.modal-fade {
+  transition: opacity 0.15s linear;
+  background: grey;
+}
